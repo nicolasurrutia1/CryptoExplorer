@@ -1,41 +1,25 @@
-import { Link } from "react-router-dom";
-import axios from "axios";
-import { useEffect, useState } from "react";
-
-const baseURL = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest";
-const apiKey = import.meta.env.VITE_API_KEY;
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { fetchCryptoData } from "../redux/cryptoSlice";
+import Container from '@mui/material/Container';
+import TableSticky from "../components/TableSticky";
 
 export default function HomePage() {
-  const [cryptoData, setCryptoData] = useState(null);
+  const dispatch = useDispatch();
+  const cryptoData = useSelector((state) => state.crypto.cryptoData);
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(baseURL, {
-          header: {
-            "X-CMC_PRO_API_KEY": apiKey,
-          },
-        });
-        setCryptoData(response.data);
-      } catch (e) {
-        console.error("Error al obtener datos: ", e);
-      }
-    };
-    fetchData();
-  }, []);
+    dispatch(fetchCryptoData());
+  }, [dispatch]);
+
+  console.log(cryptoData)
+
   return (
-    <>
+    <Container maxWidth="xl">
       <h1>Home Page</h1>
-      <Link to={"/crypto"}>Crypto</Link>
-      {cryptoData && (
-        <ul>
-          {cryptoData.map((crypto) => (
-            <li key={crypto.id}>
-              {crypto.name} ({crypto.symbol}) :
-              {crypto.quote.USD.price}
-            </li>
-          ))}
-        </ul>
-      )}
-    </>
+      <p>Powered by CoinGecko</p>
+      {/* data={cryptoData} */}
+      <TableSticky data={cryptoData}></TableSticky>
+    </Container >
   );
 }
