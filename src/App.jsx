@@ -1,18 +1,18 @@
-import { useState } from 'react'
-import './styles/App.css'
+// import { useState } from "react";
+import "./styles/App.css";
+import { Outlet } from "react-router-dom";
 
-import Button from '@mui/material/Button';
-
-export function ButtonUsage() {
-  return <Button variant="outlined ">Hello world</Button>;
-}
+import ResponsiveAppBar from "./components/ResponsiveAppBar";
+// import Routes from "./router/Routes.jsx";
 
 function App() {
   return (
     <>
-    <ButtonUsage />
+      <ResponsiveAppBar />
+      <Outlet />
+      {/* <RouterProvider router={Routes} /> */}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
