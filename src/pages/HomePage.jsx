@@ -9,17 +9,14 @@ export default function HomePage() {
   const cryptoData = useSelector((state) => state.crypto.cryptoData);
 
   useEffect(() => {
-    dispatch(fetchCryptoData());
+    dispatch(fetchCryptoData());    
   }, [dispatch]);
-
-  console.log(cryptoData)
 
   return (
     <Container maxWidth="xl">
-      <h1>Home Page</h1>
+      <h1>Crypto explorer</h1>
       <p>Powered by CoinGecko</p>
-      {/* data={cryptoData} */}
-      <TableSticky data={cryptoData}></TableSticky>
+      {cryptoData && <TableSticky cryptoData={cryptoData} />}
     </Container >
   );
 }

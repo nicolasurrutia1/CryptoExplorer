@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "axios";
 
-// const baseURL = "https://api.coingecko.com/api/v3/";
+const baseURL = "https://api.coingecko.com/api/v3/";
 const coinMarkets = "coins/markets"
 const apiKey = import.meta.env.VITE_API_KEY;
 

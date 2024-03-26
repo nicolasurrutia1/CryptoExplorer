@@ -4,12 +4,13 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store";
 
 import ResponsiveAppBar from "./components/ResponsiveAppBar";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
     <Provider store={store}>
-      <ResponsiveAppBar />
-      <Outlet />      
+      <ResponsiveAppBar />      
+      <Outlet />
     </Provider>
   );
 }
